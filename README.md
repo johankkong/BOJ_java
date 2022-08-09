@@ -25,11 +25,16 @@ BufferReader를 선언할 땐, `BufferedReader in = new BufferedReader(new Input
 
 String을 정수로 바꾸고 싶다면, `Integer.parseInt("1")`를 이용한다.
 
+델타이동을 할 때엔, 경계선을 넘어가지 않는지 항상 확인해야한다.
+
+델타이동을 순환적으로 할때엔 `d = ++d % 4;`와 같이 나머지 연산자를 이용할 수 있다.
+
 ---
 
 ## S4
 - 2491
 - 2578
+- 10157
 
 ## S5
 - 2628
