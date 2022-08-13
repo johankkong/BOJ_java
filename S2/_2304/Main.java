@@ -1,40 +1,92 @@
 package S2._2304;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
+	static int result = 0; // ìµœì¢…ê²°ê³¼
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		int[] ground = new int[1000];
+		int[] ground = new int[1001];
 		int num = sc.nextInt();
-		for(int i = 0; i < num; i++) {
+		for (int i = 0; i < num; i++) {
 			ground[sc.nextInt()] = sc.nextInt();
 		}
-		
-	}
-	
-	static int calculation(int[] arr) {
-		//ÃÖ´ë ³ôÀÌ Ã£±â
+//		calculation(ground, 0);
 		int max = 0;
-		for(int i = 0; i < arr.length; i++) {
-			if(arr[i] > max) {
-				max = arr[i];
+		for(int i = 0; i < ground.length; i++) {
+			if(max < ground[i]) max = ground[i];
+		}
+		int maxLeft = 1001;
+		int maxRight = -1;
+		for(int i = 0; i < ground.length; i++) {
+			if(ground[i] == max) {
+				if(i < maxLeft) maxLeft = i;
+				if(i > maxRight) maxRight = i;
 			}
 		}
-		//°¡Àå ÁÂÃø ÃÖ´ë ÀÎµ¦½º¿Í ¿ìÃø ÃÖ´ë ÀÎµ¦½ºµµ ±¸ÇÑ´Ù.
-		int maxLeft = 1000;
-		int maxRight = 0;
-		for(int i = 0; i < arr.length; i++) {
-			if(arr[i] == max) {
-				maxLeft = Math.min(i, maxLeft);
-				maxRight = Math.max(i, maxRight);
-			}
+		if(maxLeft != maxRight) result += (maxRight - maxLeft + 1) * max;
+		else result += max;
+		int tmp = 0;
+		for(int i = 0; i < maxLeft; i++) {
+			if(ground[i] > tmp) tmp = ground[i];
+			result += tmp;
 		}
-		//¿ìÃøÀç±ÍÇÔ¼ö
-		
-		//ÁÂÃøÀç±ÍÇÔ¼ö
-		
+		tmp = 0;
+		for(int i = 1000; i > maxRight; i--) {
+			if(ground[i] > tmp) tmp = ground[i];
+			result += tmp;
+		}
+		System.out.println(result);
 	}
+
+//	static void calculation(int[] arr, int flag) {
+//		//ë°°ì—´ì˜ ê¸¸ì´ê°€ 1ì¼ ê²½ìš° ë¦¬í„´
+//		if(arr.length <= 1) return;
+//		// í˜„ì¬ ë°°ì—´ì—ì„œ ìµœëŒ“ê°’ êµ¬í•˜ê¸°
+//		int max = 0;
+//		for (int i = 0; i < arr.length; i++) {
+//			if (arr[i] > max) {
+//				max = arr[i];
+//			}
+//		}
+//		// ìµœëŒ“ê°’ì˜ ì¸ë±ìŠ¤ êµ¬í•˜ê¸°
+//		int maxLeft = 1001;
+//		int maxRight = -1;
+//		for (int i = 0; i < arr.length; i++) {
+//			if (arr[i] == max) {
+//				maxLeft = Math.min(i, maxLeft);
+//				maxRight = Math.max(i, maxRight);
+//			}
+//		}
+//		int[] leftArr = Arrays.copyOf(arr, maxLeft);
+//		int[] rightArr = Arrays.copyOfRange(arr, maxRight+1, arr.length);
+//		// ê°€ìš´ë° ì‹œì‘
+//		if (flag == 0) {
+//			// ìµœëŒ“ê°’ì´ ì—¬ëŸ¬ê°œì¸ ê²½ìš°
+//			if (maxLeft != maxRight) {
+//				result += (maxRight - maxLeft + 1) * max;
+//			}
+//			//í•˜ë‚˜ì¼ ê²½ìš°
+//			else {
+//				result += max;
+//			}
+//			calculation(leftArr, -1);
+//			calculation(rightArr, 1);
+//		}
+//		//ì˜¤ë¥¸ìª½ì¸ ê²½ìš°
+//		else if(flag == 1) {
+//			result += (maxRight + 1) * max;
+//			if(maxRight == arr.length - 1) return;
+//			calculation(rightArr, 1);
+//		}
+//		//ì™¼ìª½ì¸ ê²½ìš°
+//		else if(flag == -1) {
+//			result += (arr.length - maxLeft) * max; 
+//			if(maxLeft == 0) return;
+//			calculation(leftArr, -1);
+//		}
+//	}
 
 }
