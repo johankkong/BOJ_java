@@ -41,6 +41,8 @@ Bottom Up 방식의 DP를 이용할 때, 현재 칸과 그 이전칸의 관계�
 
 Queue를 사용하고 싶다면, `Queue<Integer> queue = new LinkedList<>();`를 통해 선언하여 사용한다.
 
+연속적으로 출력을 해야하는 경우, 시간 초과가 난다면 `StringBuilder`를 이용하여 한번에 출력해보자
+
 ---
 
 ## S1
@@ -69,6 +71,7 @@ Queue를 사용하고 싶다면, `Queue<Integer> queue = new LinkedList<>();`를
 - 2578
 - 10157
 - 10158
+- 10845
 
 ## S5
 - 2628
