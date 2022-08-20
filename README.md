@@ -93,5 +93,6 @@ Queue를 사용하고 싶다면, `Queue<Integer> queue = new LinkedList<>();`를
 
 ## B5
 - 1001
+- 1008
 - 2557
 - 10872
