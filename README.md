@@ -43,6 +43,8 @@ Queue를 사용하고 싶다면, `Queue<Integer> queue = new LinkedList<>();`를
 
 연속적으로 출력을 해야하는 경우, 시간 초과가 난다면 `StringBuilder`를 이용하여 한번에 출력해보자
 
+원하는 길이 만큼만 문자열을 뒤집고 싶다면 stack을 이용해보자.
+
 ---
 
 ## S1
@@ -64,6 +66,7 @@ Queue를 사용하고 싶다면, `Queue<Integer> queue = new LinkedList<>();`를
 - 2477
 - 2559
 - 2579
+- 17413
 
 ## S4
 - 1158
