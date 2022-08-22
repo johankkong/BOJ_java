@@ -77,6 +77,7 @@ Queue를 사용하고 싶다면, `Queue<Integer> queue = new LinkedList<>();`를
 - 10157
 - 10158
 - 10845
+- 12789
 
 ## S5
 - 2628
