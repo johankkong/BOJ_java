@@ -48,6 +48,7 @@ Queue를 사용하고 싶다면, `Queue<Integer> queue = new LinkedList<>();`를
 ---
 
 ## S1
+- 1890
 - 2527
 - 2564
 
