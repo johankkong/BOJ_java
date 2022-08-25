@@ -22,7 +22,7 @@ public class Main {
 				return o1[0] - o2[0];
 			}
 		});
-		System.out.println();
+		System.out.println(Arrays.deepToString(cols));
 		
 		//dp 배열 선언
 		int[][] dp = new int[num][3];  //i번째 블럭을 가장 아래로 하는 최대 높이를 저장, 2열에는 바로 위 블럭 번호를 저장, 3열에 인덱스
@@ -34,7 +34,7 @@ public class Main {
 				if(cols[i][2] > cols[k][2]) {  //자신보다 무게가 작은 블럭 중에서
 					if(localMax < dp[k][0]) {  //최대값을 찾는다
 						localMax = dp[k][0];
-						number = dp[k][1];
+						number = cols[k][3];
 						index = k;
 					}
 				}
