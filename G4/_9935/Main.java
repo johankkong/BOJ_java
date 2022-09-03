@@ -12,6 +12,8 @@ import java.util.Queue;
 public class Main {
 	public static void main(String[] args) throws IOException {
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-
+		String text = in.readLine();
+		String bomb = in.readLine();
+		
 	}
 }
