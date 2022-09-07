@@ -22,7 +22,6 @@ public class Main {
 				return o1[0] - o2[0];
 			}
 		});
-		System.out.println(Arrays.deepToString(cols));
 		
 		//dp 배열 선언
 		int[][] dp = new int[num][3];  //i번째 블럭을 가장 아래로 하는 최대 높이를 저장, 2열에는 바로 위 블럭 번호를 저장, 3열에 인덱스
@@ -45,9 +44,28 @@ public class Main {
 				dp[i][2] = index;    //그 이전 칸의 인덱스를 저장한다.
 			} else { //자신보다 가벼운 블럭이 없다면
 				dp[i][0] = cols[i][1]; //자신의 높이를 넣는다.
-				//나머지는 0 그대로
+				dp[i][1] = -1;  //나머지는 -1로 바꿔줌
+				dp[i][2] = -1;
 			}
 		}
-		System.out.println(Arrays.deepToString(dp));
+		int maxHeight = 0;
+		int maxIndex = -1;
+		for(int i = 0; i < num; i++) { //dp 배열에서 최대 높이를 찾는다
+			if(maxHeight < dp[i][0]) {
+				maxHeight = dp[i][0];
+				maxIndex = i;
+			}
+		}
+		StringBuilder sb = new StringBuilder();
+		int cnt = 1;
+		int index = maxIndex; 
+		sb.insert(0, cols[index][3] + "\n"); //제일 위에 있는 블럭
+		while(dp[index][2] != -1) {   //인덱스가 -1이 될 때까지 되돌아간다.
+			sb.insert(0, dp[index][1] + "\n");  
+			index = dp[index][2];
+			cnt++;
+		}
+		sb.insert(0, cnt + "\n");
+		System.out.print(sb);
 	}
 }
