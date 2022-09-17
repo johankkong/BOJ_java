@@ -116,6 +116,7 @@ stream().forEach(System.out::println) 으로 출력이 가능하다.
 
 ## B1
 - 1157
+- 1259
 - 1546
 - 2309
 - 2563
