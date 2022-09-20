@@ -96,6 +96,7 @@ stream().forEach(System.out::println) 으로 출력이 가능하다.
 - 2477
 - 2559
 - 2579
+- 10972
 - 17413
 
 ## S4
