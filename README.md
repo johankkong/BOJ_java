@@ -57,6 +57,9 @@ stream().forEach(System.out::println) 으로 출력이 가능하다.
 
 ---
 
+## G2
+- 1918
+
 ## G3
 - 2655
 
