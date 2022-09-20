@@ -70,6 +70,7 @@ stream().forEach(System.out::println) 으로 출력이 가능하다.
 - 12865
 - 15686
 - 16927
+- 17070
 
 ## S1
 - 1890
