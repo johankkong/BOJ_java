@@ -63,6 +63,7 @@ stream().forEach(System.out::println) 으로 출력이 가능하다.
 ## G4
 - 2116
 - 9935
+- 17069
 
 ## G5
 - 2293
