@@ -86,6 +86,7 @@ stream().forEach(System.out::println) 으로 출력이 가능하다.
 - 16935 
 
 ## S2
+- 1874
 - 1965
 - 2304
 - 2615
