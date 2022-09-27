@@ -1,53 +1,47 @@
 package G4._7662;
 
-import java.util.Comparator;
+import java.util.Map.Entry;
 import java.util.Scanner;
-import java.util.TreeSet;
+import java.util.TreeMap;
 
 public class Main {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		int T = sc.nextInt();
 		for (int tc = 1; tc <= T; tc++) {
-			TreeSet<pair> MaxTree = new TreeSet<>(new Comparator<pair>() {
-				@Override
-				public int compare(pair o1, pair o2) {
-					return o1.value - o2.value;
-				}
-			});
+			TreeMap<Integer, Integer> map = new TreeMap<>();
 			int num = sc.nextInt();
 			for (int i = 0; i < num; i++) {
 				String comm = sc.next();
 				int value = sc.nextInt();
-				if(comm.equals("I")) {
-					pair p = new pair(value, true);
-					MaxTree.add(p);
+				if (comm.equals("I")) {
+					map.put(value, map.getOrDefault(value, 0) + 1);
 				} else {
-					if(value == 1) {
-						if(!MaxTree.isEmpty()) {
-							MaxTree.pollFirst();
-						}
+					if (map.size() == 0) {
+						continue;
 					}
-					else {
-						if(!MaxTree.isEmpty()) {
-							MaxTree.pollLast();
+					if (value == -1) {
+						Entry<Integer, Integer> ent = map.pollFirstEntry();
+						if (ent.getValue() == 1) {
+							continue;
+						} else {
+							map.put(ent.getKey(), ent.getValue() - 1);
 						}
+					} else {
+						Entry<Integer, Integer> ent = map.pollLastEntry();
+						if (ent.getValue() == 1) {
+							continue;
+						} else {
+							map.put(ent.getKey(), ent.getValue() - 1);
+						}
+						
 					}
 				}
 			}
-			if(MaxTree.size() == 0) System.out.println("EMPTY");
-			else System.out.println(MaxTree.last().value + " " + MaxTree.first().value);
-		}
-	}
-
-	static class pair {
-		int value;
-		boolean flag;
-
-		public pair(int value, boolean flag) {
-			super();
-			this.value = value;
-			this.flag = flag;
+			if (map.size() == 0)
+				System.out.println("EMPTY");
+			else
+				System.out.println(map.lastKey() + " " + map.firstKey());
 		}
 	}
 }
