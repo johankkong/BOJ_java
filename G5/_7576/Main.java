@@ -17,65 +17,55 @@ public class Main {
 		M = Integer.parseInt(st.nextToken());
 		N = Integer.parseInt(st.nextToken());
 		arr = new int[N][M];
-		visited = new int[N][M];
+		visited = new boolean[N][M];
+		queue = new LinkedList<>();
 		for (int i = 0; i < N; i++) {
 			st = new StringTokenizer(in.readLine());
 			for (int j = 0; j < M; j++) {
 				arr[i][j] = Integer.parseInt(st.nextToken());
-				if (arr[i][j] == -1) {
-					visited[i][j] = -1;
-				} else if (arr[i][j] == 1) {
-					visited[i][j] = -2;
-				}
-			}
-		}
-		for (int i = 0; i < N; i++) {
-			for (int j = 0; j < M; j++) {
 				if (arr[i][j] == 1) {
-					bfs(i, j);
+					queue.offer(new Node(i, j, 0));
+					visited[i][j] = true;
+				} else if(arr[i][j] == -1) {
+					visited[i][j] = true;
 				}
 			}
 		}
-		int maxDay = 0;
+		cnt = -1;
+		bfs();
 		for (int i = 0; i < N; i++) {
 			for (int j = 0; j < M; j++) {
-				if (visited[i][j] == 0) {
+				if (!visited[i][j]) {
 					System.out.println(-1);
 					System.exit(0);
-				} else {
-					maxDay = Math.max(maxDay, visited[i][j]);
 				}
 			}
 		}
-		System.out.println(maxDay);
+		System.out.println(cnt);
 	}
 
-	static int[][] visited;
+	static int cnt;
+	static boolean[][] visited;
 	static int[] dr = { -1, 1, 0, 0 };
 	static int[] dc = { 0, 0, -1, 1 };
 	static Queue<Node> queue;
 
-	static void bfs(int i, int j) {
-		queue = new LinkedList<>();
-		queue.offer(new Node(i, j, 0));
-		visited[i][j] = -1;
+	static void bfs() {
 		while (!queue.isEmpty()) {
 			Node node = queue.poll();
 			int r = node.row;
 			int c = node.col;
 			int day = node.day;
+			if(day != cnt) {
+				cnt = day;
+			}
 			for (int d = 0; d < 4; d++) {
 				int nr = r + dr[d];
 				int nc = c + dc[d];
 				if (nr >= 0 && nr < N && nc >= 0 && nc < M) {
-					if (visited[nr][nc] == 0) {
+					if (arr[nr][nc] != -1 && !visited[nr][nc]) {
 						queue.offer(new Node(nr, nc, day + 1));
-						visited[nr][nc] = day + 1;
-					} else if (visited[nr][nc] > 0) {
-						if (visited[nr][nc] > day + 1) {
-							queue.offer(new Node(nr, nc, day + 1));
-							visited[nr][nc] = day + 1;
-						}
+						visited[nr][nc] = true;
 					}
 				}
 			}
