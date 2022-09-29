@@ -12,7 +12,7 @@ public class Main {
 		N = sc.nextInt();
 		K = sc.nextInt();
 		ans = 0;
-		visited = new boolean[Integer.MAX_VALUE];
+		visited = new boolean[100001];
 		bfs(new Node(N, 0));
 		System.out.println(ans);
 	}
@@ -27,10 +27,18 @@ public class Main {
 			int t = n.time;
 			ans = t;
 			if(v == K) break;
-			
-			queue.add(new Node(v * 2, t + 1));
-			queue.add(new Node(v + 1, t + 1));
-			queue.add(new Node(v - 1, t + 1));
+			if(v * 2 < 100001 && !visited[v * 2]) {
+				queue.add(new Node(v * 2, t + 1));
+				visited[v * 2] = true;
+			}
+			if(v + 1 < 100001 && !visited[v + 1]) {
+				queue.add(new Node(v + 1, t + 1));
+				visited[v + 1] = true;
+			}
+			if(v - 1 < 100001 && v - 1 >= 0 && !visited[v - 1]) {
+				queue.add(new Node(v - 1, t + 1));
+				visited[v - 1] = true;
+			}
 		}
 	}
 
